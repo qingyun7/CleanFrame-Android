@@ -1,22 +1,16 @@
 {
-  "name": "cleanframe",
-  "version": "0.6.1",
+  "name": "cleanframe-android",
+  "version": "1.1.2",
   "private": true,
-  "description": "A personal, uncluttered home interface for Samsung The Frame.",
+  "license": "MIT",
+  "description": "Independent Android TV port of CleanFrame, tested on Xiaomi MiTV-MFTP0.",
   "scripts": {
-    "dev": "python3 scripts/preview.py",
-    "check": "node --check app/main.js && node --check app/device.js && python3 scripts/check.py",
-    "package": "python3 scripts/package.py",
-    "tv:info": "python3 scripts/tv.py info",
-    "tv:install": "python3 scripts/tv.py install",
-    "tv:launch": "python3 scripts/tv.py launch",
-    "check:browser": "node scripts/check-browser.mjs",
-    "dev:public": "python3 scripts/preview.py --public-fonts",
-    "export:public": "python3 scripts/export-public.py",
-    "check:public": "python3 scripts/check-public.py"
+    "check": "node --check app/src/main/assets/cleanframe/main.js && node --check app/src/main/assets/cleanframe/device.js && python3 scripts/check.py",
+    "check:browser": "node scripts/check-android.cjs",
+    "check:public": "python3 scripts/check-public.py",
+    "export:public": "python3 scripts/export-public.py"
   },
   "devDependencies": {
     "playwright": "1.64.1"
-  },
-  "license": "MIT"
+  }
 }

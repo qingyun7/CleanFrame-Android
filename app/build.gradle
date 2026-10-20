@@ -1,0 +1,40 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.qingyun.cleanframe'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'com.qingyun.cleanframe'
+        minSdk 26
+        targetSdk 28
+        versionCode 4
+        versionName '1.1.2'
+    }
+    // Personal sideload for Android 9, not a Google Play submission.
+    lint { disable 'ExpiredTargetSdkVersion' }
+    def localSigning = new Properties()
+    def signingFile = rootProject.file('.local/signing.properties')
+    if (signingFile.exists()) {
+        signingFile.withInputStream { localSigning.load(it) }
+    }
+    signingConfigs {
+        local {
+            storeFile rootProject.file('.local/cleanframe-local.jks')
+            storePassword localSigning.getProperty('storePassword')
+            keyAlias localSigning.getProperty('keyAlias', 'cleanframe')
+            keyPassword localSigning.getProperty('keyPassword')
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.local
+        }
+    }
+    buildFeatures { buildConfig true }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}

@@ -5,17 +5,7 @@ import xml.etree.ElementTree as XML
 import re
 
 root = Path(__file__).resolve().parents[1]
-app = root / 'app'
-manifest = XML.parse(app / 'config.xml').getroot()
-ns = {'w': 'http://www.w3.org/ns/widgets', 't': 'http://tizen.org/ns/widgets'}
-identity = manifest.find('t:application', ns)
-assert identity is not None, 'Missing application identity'
-assert identity.get('package') == 'nClrkHome1', 'Keep the installed package identity stable'
-assert identity.get('id') == 'nClrkHome1.FrameHome', 'Keep the installed application ID stable'
-assert manifest.get('version') == json.loads((root / 'package.json').read_text())['version'], 'Manifest/package versions differ'
-for tag in ['content', 'icon']:
-    node = manifest.find('w:' + tag, ns)
-    assert node is not None and (app / node.get('src', '')).is_file(), 'Missing ' + tag + ' file'
+app = root / 'app/src/main/assets/cleanframe'
 assert all((app / name).is_file() for name in ['main.js', 'style.css'])
 for reference in ['assets/wallpapers/catalog.js', 'assets/adaptive-ink.js', 'assets/font-catalog.js']:
     assert (app / reference).is_file(), 'Missing runtime catalogue: ' + reference
@@ -43,4 +33,4 @@ for wall in walls:
     assert (app / ('assets/wallpapers/' + wall_id + '-panel.jpg')).is_file(), 'Missing panel backdrop: ' + wall_id
 for icon in ['stremio', 'netflix', 'disneyplus', 'youtube', 'appletv', 'primevideo', 'abciview', 'sbs', 'applemusic', 'art', 'apps', 'settings']:
     assert (app / ('assets/icons/' + icon + '.svg')).is_file(), 'Missing icon: ' + icon
-print('Widget identity, version and bundled resources are valid.')
+print('Android bundled resources are valid.')

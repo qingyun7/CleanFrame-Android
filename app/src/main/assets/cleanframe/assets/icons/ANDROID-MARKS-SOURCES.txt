@@ -1,0 +1,7 @@
+Personal Android launcher adaptations, 20 October 2026.
+
+The android-*.svg marks were redrawn as compact monochrome paths for this owner's launcher, using the installed applications' visible launcher icons as visual references. They are personal adaptations, not official vector assets, not endorsements, and carry no claim to a third-party brand licence. Brand names and marks belong to their respective owners.
+
+Utility symbols (weather, alarm, casting, calendar, guide, gallery and notifications) are original simple 64-unit drawings. Xiaomi TV Manager retains the recognisable rocket theme. Brand paths intentionally omit app-tile backgrounds. Existing Netflix and settings SVGs are reused without modification; their original source records and notices remain in this directory.
+
+The FNTV visual reference was extracted locally from the publicly distributed official 飞牛 TV 1.4.2 APK linked by https://fnnas.com/download . Other references came from this owner's installed app icon catalogue. No APK code or interface was decompiled for these drawings.

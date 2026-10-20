@@ -1,29 +1,17 @@
-# Machine-specific tools, signing keys and device configuration
-/.local/
-/dist/
-/node_modules/
-.DS_Store
+.gradle/
+.local/
+local.properties
+**/build/
+node_modules/
+dist/
 __pycache__/
 *.pyc
+.DS_Store
 .env
 .env.*
+*.jks
+*.keystore
 *.p12
 *.pem
 *.key
-*.csr
-profiles.xml
-session.json
-certificate-password.txt
-
-# Proprietary fonts are injected from .local/ at preview/package time.
-/app/assets/private-fonts/
-PP*.ttf
-PP*.otf
-PP*.woff
-PP*.woff2
-*.wgt
-
-# Personal studies, research and draft writing stay local.
-/explorations/
-/docs/research/
-/docs/articles/
+*.apk

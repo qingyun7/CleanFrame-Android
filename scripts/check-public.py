@@ -8,7 +8,7 @@ import json
 import re
 import subprocess
 
-from font_assets import ROOT
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def git(*args):
@@ -19,12 +19,12 @@ candidates = set(git('ls-files', '--cached', '--others', '--exclude-standard', '
 objects = git('rev-list', '--objects', '--all').decode().splitlines()
 findings = []
 font_suffixes = {'.ttf', '.otf', '.woff', '.woff2', '.eot'}
-private_suffixes = {'.p12', '.pem', '.key', '.csr', '.wgt'}
+private_suffixes = {'.p12', '.pem', '.key', '.csr', '.wgt', '.jks', '.keystore'}
 
 
 def forbidden(name):
     path = Path(name)
-    return (name.startswith(('.local/', 'dist/', 'node_modules/', 'app/assets/private-fonts/',
+    return (name.startswith(('.local/', 'dist/', 'node_modules/', 'app/src/main/assets/cleanframe/assets/private-fonts/',
                                     'explorations/', 'docs/research/', 'docs/articles/'))
             or path.suffix.lower() in private_suffixes
             or (path.name.startswith('PP') and path.suffix.lower() in font_suffixes)
@@ -32,10 +32,10 @@ def forbidden(name):
             or path.name in {'certificate-password.txt', 'profiles.xml', '.env', 'session.json'})
 
 
-public_fonts = {'app/assets/manrope.woff2': 'e310b55a7fd9677f5e3555e6c6c4d064fa1f1d24393f0ddbe217cea12a8c432f'}
-for record in json.loads((ROOT / 'app/assets/fonts/SOURCES.json').read_text()):
+public_fonts = {'app/src/main/assets/cleanframe/assets/manrope.woff2': 'e310b55a7fd9677f5e3555e6c6c4d064fa1f1d24393f0ddbe217cea12a8c432f'}
+for record in json.loads((ROOT / 'app/src/main/assets/cleanframe/assets/fonts/SOURCES.json').read_text()):
     if Path(record['file']).suffix.lower() in font_suffixes:
-        public_fonts['app/assets/fonts/' + record['file']] = record['sha256']
+        public_fonts['app/src/main/assets/cleanframe/assets/fonts/' + record['file']] = record['sha256']
 
 for name in sorted(candidates):
     if forbidden(name):
@@ -71,7 +71,7 @@ for path in private_fonts:
     if git('hash-object', str(path)).decode().strip() in object_ids:
         findings.append('Known proprietary font bytes in Git history: ' + path.name)
 
-for name in ['app/assets/fonts/geist/OFL.txt', 'app/assets/fonts/newsreader/OFL.txt', 'app/assets/manrope-OFL.txt']:
+for name in ['app/src/main/assets/cleanframe/assets/fonts/geist/OFL.txt', 'app/src/main/assets/cleanframe/assets/fonts/newsreader/OFL.txt', 'app/src/main/assets/cleanframe/assets/manrope-OFL.txt']:
     if not (ROOT / name).is_file():
         findings.append('Missing public font licence: ' + name)
 
