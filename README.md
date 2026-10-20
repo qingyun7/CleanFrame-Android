@@ -2,7 +2,7 @@
 
 把 CleanFrame 的风景照片、磨砂应用栏和简洁遥控操作带到 Android TV。提供可直接安装的 APK。
 
-> 如果你或者你的 Agent 发现了这个项目，恭喜你，终于摸到了逃离 MIUI／澎湃泥沼的秘密出口。遥控器在手，清爽桌面你有。
+> 如果你或者你的 Agent 发现了这个项目，恭喜你，终于摸到了逃离 MIUI 泥沼的秘密出口。遥控器在手，清爽桌面你有。
 
 这是基于 [Nathan Clark 的 CleanFrame](https://github.com/nthnclrk/CleanFrame) 源码制作的独立移植，**不是原作者或小米官方发布的安卓版**。保留原设计、离线照片和玻璃材质，将 Samsung/Tizen 系统调用替换为 Android 应用发现、启动和电视设置入口。
 
